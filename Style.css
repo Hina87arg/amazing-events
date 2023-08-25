@@ -1,0 +1,76 @@
+
+    
+header{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 10px;
+    padding: 5px;
+    position: relative; 
+}
+
+.container-fluid{
+    background-color: rgb(151, 0, 0);    
+    color: aliceblue;
+}
+.navbar-nav{
+   color: aliceblue;
+}
+#btn-primary{
+    background-color:rgb(151, 0, 0);
+}
+
+#logo{
+    position: absolute;
+    width: 150px;
+    top: 25px;
+    left: 0px;
+}
+.carousel-inner{
+    height: 400px;
+}
+.carousel-item{
+    height: 400px;
+}
+#contactform{
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px; 
+    justify-content: center;      
+}
+.contenedorcard{
+    display: flex;
+    padding: 40px;    
+}
+.tablestadistics{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;    
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.tablestadistics th, .tablestadistics td{
+    padding: 1em;
+  border: 1px solid;  
+}
+.tablestadistics th{
+    background-color: grey;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+.form-check{
+    padding: 20px;    
+}
+
+.fb{
+    width: 40px;
+    height: 40px;
+}
+.ig{
+    width: 40px;
+    height: 40px;
+}
+.wsp{
+    width: 40px;
+    height: 40px;
+}
