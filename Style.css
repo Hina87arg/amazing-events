@@ -54,7 +54,7 @@ header{
   border: 1px solid;  
 }
 .tablestadistics th{
-    background-color: grey;
+    background-color: darkred;
   color: rgb(0, 0, 0);
   font-weight: bold;
 }
@@ -73,4 +73,9 @@ header{
 .wsp{
     width: 40px;
     height: 40px;
+}
+@media (any-hover: hover) {
+  div>a:hover {
+    background: rgb(233, 0, 0);
+  }
 }
