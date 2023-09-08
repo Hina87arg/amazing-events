@@ -124,3 +124,44 @@ header {
   }
   
 }
+@media all and (max-width: 425px) {
+  header{
+      width: auto;
+  }
+  body{
+      width: auto;
+  }
+.navbar-nav {
+  justify-content: end;
+}
+#logo {
+  flex: 1;
+}
+.nav-link {
+  width: auto;
+  order: 1;
+  display: block;
+  padding: 7.5px 15px;
+}
+
+}
+@media all and (max-width: 375px) {
+  header{
+      width: auto;
+  }
+  body{
+      width: auto;
+  }
+.navbar-nav {
+  justify-content: end;
+}
+#logo {
+  flex: 1;
+}
+.nav-link {
+  width: auto;
+  order: 1;
+  display: block;
+  padding: 7.5px 15px;
+}
+}
