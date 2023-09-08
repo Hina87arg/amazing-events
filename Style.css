@@ -10,6 +10,10 @@ header {
   background-color: rgb(151, 0, 0);
   color: aliceblue;
 }
+.navhorizontal{
+  background-color: rgb(151, 0, 0);
+  color: aliceblue;
+}
 .navbar-nav {
   color: aliceblue;
 }
@@ -69,7 +73,8 @@ header {
   font-weight: bold;
 }
 .form-check {
-  padding: 20px;
+  padding: 10px;
+  
 }
 
 .fb {
