@@ -62,13 +62,16 @@ checksEnHtml(categchecks, $checks)
 
 // chequeados
 function cardsEnHTML (events, elementoHTML){
-  
-
-  let estructura = ""
-  events.forEach( categoria => {
-       estructura += estructuraCards(categoria)
-  } )
-  elementoHTML.innerHTML = estructura  
+  if (events.length > 0){
+    let estructura = ""
+    events.forEach( categoria => {
+         estructura += estructuraCards(categoria)
+    } )
+    elementoHTML.innerHTML = estructura  
+  } else {
+elementoHTML.innerHTML = `<div class="container-fluid d-flex flex-column h-auto"><h2>No results, please try another search</h2></div>
+`
+  }  
 }
 
 $checks.addEventListener("change", (e) => {

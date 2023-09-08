@@ -12,7 +12,7 @@ for (let event of totalEvents)
             <h5 class="card-title">${event.name}</h5>
             <p class="card-text">${event.description}</p>
             <p>${event.price}</p>
-            <a href="Details.html?id=${event._id}" class="btn btn-outline-danger">Submit</a>
+            <a href="Details.html?id=${event_id}" class="btn btn-outline-danger">Submit</a>
           </div>
         </div>
         </div>`;
@@ -51,13 +51,16 @@ checksEnHtml(categchecks, $checks)
 
 // chequeados
 function cardsEnHTML (events, elementoHTML){
-  
-
-  let estructura = ""
-  events.forEach( categoria => {
-       estructura += estructuraCards(categoria)
-  } )
-  elementoHTML.innerHTML = estructura  
+  if (events.length > 0){
+    let estructura = ""
+    events.forEach( categoria => {
+         estructura += estructuraCards(categoria)
+    } )
+    elementoHTML.innerHTML = estructura  
+  } else {
+elementoHTML.innerHTML = `<div class="container-fluid d-flex flex-column h-auto"><h2>No results, please try another search</h2></div>
+`
+  }  
 }
 
 $checks.addEventListener("change", (e) => {
