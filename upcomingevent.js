@@ -72,7 +72,8 @@ function cardsEnHTML (events, elementoHTML){
   } else {
 elementoHTML.innerHTML = `<div class="container-fluid d-flex flex-column h-auto"><h2>No results, please try another search</h2></div>
 `
-  }  
+  }
+  
 }
 
 $checks.addEventListener("change", (e) => {

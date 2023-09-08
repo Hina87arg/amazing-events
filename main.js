@@ -12,7 +12,7 @@ for (let event of totalEvents)
             <h5 class="card-title">${event.name}</h5>
             <p class="card-text">${event.description}</p>
             <p>${event.price}</p>
-            <a href="Details.html?id=${event_id}" class="btn btn-outline-danger">Submit</a>
+            <a href="Details.html?id=${event._id}" class="btn btn-outline-danger">Submit</a>
           </div>
         </div>
         </div>`;
