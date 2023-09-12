@@ -16,7 +16,7 @@ console.log(eventSelected);
 const $contenedordetails = document.querySelector('.contenedordetail')
 $contenedordetails.innerHTML =  `
 <div class="d-flex flex-wrap p-5">
-  <div class="card " style="width: 18rem;">
+  <div class="card" style="width: 18rem;">
     <img src="${eventSelected.image}" class="card-img-top" alt="foto">
     <div class="card-body">
       <h5 class="card-title">${eventSelected.name}</h5>

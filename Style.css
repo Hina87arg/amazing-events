@@ -12,7 +12,7 @@ header {
 }
 .navhorizontal{
   background-color: rgb(151, 0, 0);
-  color: aliceblue;
+  color: aliceblue;  
 }
 .navbar-nav {
   color: aliceblue;
@@ -54,6 +54,14 @@ header {
   display: flex;
   padding: 40px;
 }
+
+/* .contenedorcategoria{
+  display: flex;
+  padding-right: 10px;
+}
+#ocheckbxcat{
+  display: block;
+} */
 .tablestadistics {
   display: flex;
   justify-content: center;

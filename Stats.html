@@ -17,11 +17,11 @@
       <div class="collapse" id="navbarToggleExternalContent" >
         <div class="p-4">
           <div class="nabvaricono">
-          <a class="nav-link active border border-black rounded" aria-current="page" href="#">Home</a>
+          <a class="nav-link active border border-black rounded"  href="Index.html">Home</a>
           <a class="nav-link border border-black rounded" href="Pastevents.html">Past Events</a>
           <a class="nav-link border border-black rounded" href="Upcomingevents.html">Upcoming Events</a>
           <a class="nav-link border border-black rounded" href="Contact.html">Contact</a>
-          <a class="nav-link border border-black rounded" href="Stats.html">Stats</a>
+          <a class="nav-link border border-black rounded" aria-current="page" href="#">Stats</a>
           <a class="nav-link border border-black rounded" href="Details.html">Details</a>                
         </div>   
         </div>
@@ -98,24 +98,10 @@
       </button>
     </div>    
   </div>
-    <div class="tablestadistics p-3">
-      <table>
-        <thead>          
-          <tr>
-            <th colspan="3">Event Stadistic</th>            
-          </tr>        
-        </thead>
-             <tr>
-              <td>Events with highest % of assistance</td>
-              <td>Events with lowest % of assistance</td>
-              <td>Events with larger capacity</td>
-             </tr>
-             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-             </tr>
-       </table>
+    <div class="tablestadistics p-3" id="tabla">
+      <div id="table1"></div>
+      <div id="table2"></div>
+      <div id="table3"></div>
        <table>
         <thead>          
           <tr>
@@ -157,6 +143,6 @@
       <a href="https://www.whatsapp.com/" title="Whatsapp"><img src="Assets/whatsapp.png" alt="Whatsapp" class="wsp"></a>                
      </footer>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    
+    <script src="./stats.js"></script>
 </body>
 </html>

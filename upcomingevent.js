@@ -1,18 +1,52 @@
 //console.log(data)
 let upcomingEvent = [];
 let template = ""
-const currentDate = data.currentDate
+
+
+const $cards = document.getElementById('cardscontainer');
+console.log($cards)
+$cards.innerHTML = template; 
+const $search = document.querySelector('input[type="search"]')
+console.log($search);
+// checks
+const $checks = document.getElementById('checkboxcat');
+console.log($checks);
+
+fetch('https://mindhub-xj03.onrender.com/api/amazing')
+.then ( response => response.json())
+.then( data => {
+  let events = data.events
+  console.log(events);
+  const currentDate = data.currentDate
 console.log(currentDate)
 
-function filtrarFecha(date){
-    for(let event of data.events){
+  function filtrarFecha(date){    
+    for(let event of events){
       if (date <= event.date){
         upcomingEvent.push(event)
       }
     }
-}
-filtrarFecha(currentDate)
-console.log(upcomingEvent)
+    
+  }
+  console.log(upcomingEvent)
+  filtrarFecha(currentDate)
+// categorias
+const categchecks = [...new Set (upcomingEvent.map(event => event.category))];
+checksEnHtml(categchecks, $checks)
+
+$checks.addEventListener("change", (e) => {
+  let arrayfiltroAnid = filtrosAnidados(upcomingEvent, $search)
+  console.log(arrayfiltroAnid);
+  cardsEnHTML(arrayfiltroAnid, $cards)
+})
+
+$search.addEventListener("keyup", ()=>{
+  const returnFiltroA = filtrosAnidados(upcomingEvent, $search)
+cardsEnHTML( returnFiltroA, $cards )
+})
+
+})
+.catch( error => { console.log(error)})
 
 for (let event of upcomingEvent) {
       template += `<div class="d-flex flex-wrap p-5">
@@ -25,21 +59,8 @@ for (let event of upcomingEvent) {
             <a href="Details.html?id=${event._id}" class="btn btn-outline-danger">Submit</a>
           </div>
         </div>
-        </div>`;
-  }
-const $cards = document.getElementById('cardscontainer');
-console.log($cards)
-$cards.innerHTML = template;
-
-// checks
-const $checks = document.getElementById('checkboxcat');
-console.log($checks);
-
-
-// categorias
-
-const categchecks = [...new Set (upcomingEvent.map(event => event.category))];
-
+        </div>`;       
+  }   
 
 // estructura checkbox
 function estructuraCheckbox(categoria) {
@@ -58,8 +79,6 @@ function checksEnHtml (array, elemento){
   });
   elemento.innerHTML = contenedor
 }
-checksEnHtml(categchecks, $checks)
-
 
 // chequeados
 function cardsEnHTML (events, elementoHTML){
@@ -72,15 +91,8 @@ function cardsEnHTML (events, elementoHTML){
   } else {
 elementoHTML.innerHTML = `<div class="container-fluid d-flex flex-column h-auto"><h2>No results, please try another search</h2></div>
 `
-  }
-  
+  }  
 }
-
-$checks.addEventListener("change", (e) => {
-  let arrayfiltroAnid = filtrosAnidados(upcomingEvent, $search)
-  console.log(arrayfiltroAnid);
-  cardsEnHTML(arrayfiltroAnid, $cards)
-})
 
 // cards
 function estructuraCards (event){
@@ -99,15 +111,6 @@ function estructuraCards (event){
         </div>`;
         return template
 }
-
-const $search = document.querySelector('input[type="search"]')
-console.log($search);
-
-$search.addEventListener("keyup", ()=>{
-     const returnFiltroA = filtrosAnidados(upcomingEvent, $search)
-  cardsEnHTML( returnFiltroA, $cards )
-})
-
   
 function filtroSearch (events, input){
   let arrayfiltro = events.filter(objeto => objeto.name.includes(input.value))
@@ -121,11 +124,9 @@ function filtroCheck(array){
     let categoriasFiltradas = array.filter(objeto => eventCheck.includes(objeto.category))
     return categoriasFiltradas
   }else{
-    return data.events
+    return array
   }
 }
-
-
 
 function filtrosAnidados (array, input){
   const arrayFiltroCheck = filtroCheck(array)
