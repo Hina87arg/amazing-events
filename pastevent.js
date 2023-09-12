@@ -1,10 +1,27 @@
 let pastEvent = [];
 let template = ""
-const currentDate = data.currentDate
+
+const $cards = document.getElementById('cardscontainer');
+console.log($cards)
+// checks
+const $checks = document.getElementById('checkboxcat');
+console.log($checks);
+
+const $search = document.querySelector('input[type="search"]')
+console.log($search);
+
+
+fetch('https://mindhub-xj03.onrender.com/api/amazing')
+.then ( response => response.json())
+.then( data => {
+  let events = data.events
+  console.log(events);
+  
+  const currentDate = data.currentDate
 console.log(currentDate)
 
 function filtrarFecha(date){
-    for(let event of data.events){
+    for(let event of events){
       if (date >= event.date){
         pastEvent.push(event)
       }
@@ -13,33 +30,44 @@ function filtrarFecha(date){
 filtrarFecha(currentDate)
 console.log(pastEvent)
 
-for (let event of pastEvent) {
-      template += `<div class="d-flex flex-wrap p-5">
-        <div class="card " style="width: 18rem;">
-          <img src="${event.image}" class="card-img-top" alt="foto">
-          <div class="card-body">
-            <h5 class="card-title">${event.name}</h5>
-            <p class="card-text">${event.description}</p>
-            <p>${event.price}</p>
-            <a href="Details.html?id=${event._id}" class="btn btn-outline-danger">Submit</a>
-          </div>
-        </div>
-        </div>`;
-  }
-const $cards = document.getElementById('cardscontainer');
-console.log($cards)
-$cards.innerHTML = template;
-
-
-// checks
-const $checks = document.getElementById('checkboxcat');
-console.log($checks);
-
 
 // categorias
-
 const categchecks = [...new Set (pastEvent.map(event => event.category))];
+checksEnHtml(categchecks, $checks)
 
+$checks.addEventListener("change", (e) => {
+  let arrayfiltroAnid = filtrosAnidados(pastEvent, $search)
+  console.log(arrayfiltroAnid);
+  cardsEnHTML(arrayfiltroAnid, $cards)
+})
+
+$search.addEventListener("keyup", ()=>{
+  const returnFiltroA = filtrosAnidados(pastEvent, $search)
+cardsEnHTML( returnFiltroA, $cards )
+})
+imprimirCards(pastEvent)
+
+})
+.catch( error => { console.log(error)})
+
+// cards
+function imprimirCards (arrayEvent){
+  let template = "";
+  for (let event of arrayEvent) {
+    template += `<div class="d-flex flex-wrap p-5">
+          <div class="card " style="width: 18rem;">
+            <img src="${event.image}" class="card-img-top" alt="foto">
+            <div class="card-body">
+              <h5 class="card-title">${event.name}</h5>
+              <p class="card-text">${event.description}</p>
+              <p>${event.price}</p>
+              <a href="Details.html?id=${event._id}" class="btn btn-outline-danger">Submit</a>
+            </div>
+          </div>
+          </div>`; 
+        }
+        $cards.innerHTML = template;  
+}
 
 // estructura checkbox
 function estructuraCheckbox(categoria) {
@@ -58,7 +86,7 @@ function checksEnHtml (array, elemento){
   });
   elemento.innerHTML = contenedor
 }
-checksEnHtml(categchecks, $checks)
+
 
 // chequeados
 function cardsEnHTML (events, elementoHTML){
@@ -73,12 +101,6 @@ elementoHTML.innerHTML = `<div class="container-fluid d-flex flex-column h-auto"
 `
   }  
 }
-
-$checks.addEventListener("change", (e) => {
-  let arrayfiltroAnid = filtrosAnidados(pastEvent, $search)
-  console.log(arrayfiltroAnid);
-  cardsEnHTML(arrayfiltroAnid, $cards)
-})
 
 // cards
 function estructuraCards (event){
@@ -98,14 +120,6 @@ function estructuraCards (event){
         return template
 }
 
-const $search = document.querySelector('input[type="search"]')
-console.log($search);
-
-$search.addEventListener("keyup", ()=>{
-     const returnFiltroA = filtrosAnidados(pastEvent, $search)
-  cardsEnHTML( returnFiltroA, $cards )
-})
-
 function filtroSearch (events, input){
   let arrayfiltro = events.filter(objeto => objeto.name.includes(input.value))
 console.log(arrayfiltro);
@@ -118,7 +132,7 @@ function filtroCheck(array){
     let categoriasFiltradas = array.filter(objeto => eventCheck.includes(objeto.category))
     return categoriasFiltradas
   }else{
-    return data.events
+    return array
   }
 }
 

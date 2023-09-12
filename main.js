@@ -8,32 +8,32 @@ const $search = document.querySelector('input[type="search"]')
 console.log($search);
 
 fetch('https://mindhub-xj03.onrender.com/api/amazing')
-.then ( response => response.json())
-.then( data => {
-  let events = data.events
-  console.log(events);
- 
-  imprimirCards(events)
- 
-const categchecks = [...new Set(data.events.map(event => event.category))];
-checksEnHtml(categchecks, $checks)
-   
- $search.addEventListener("keyup", () => {
-    const returnFiltroA = filtrosAnidados(data.events, $search)
-    cardsEnHTML(returnFiltroA, $cards)
-  })
- 
-$checks.addEventListener("change", (e) => {
-  let arrayfiltroAnid = filtrosAnidados(data.events, $search)
-  console.log(arrayfiltroAnid);
-  cardsEnHTML(arrayfiltroAnid, $cards)
-})
+  .then(response => response.json())
+  .then(data => {
+    let events = data.events
+    console.log(events);
 
-})
-.catch( error => { console.log(error)})
+    imprimirCards(events)
+
+    const categchecks = [...new Set(data.events.map(event => event.category))];
+    checksEnHtml(categchecks, $checks)
+
+    $search.addEventListener("keyup", () => {
+      const returnFiltroA = filtrosAnidados(data.events, $search)
+      cardsEnHTML(returnFiltroA, $cards)
+    })
+
+    $checks.addEventListener("change", (e) => {
+      let arrayfiltroAnid = filtrosAnidados(data.events, $search)
+      console.log(arrayfiltroAnid);
+      cardsEnHTML(arrayfiltroAnid, $cards)
+    })
+
+  })
+  .catch(error => { console.log(error) })
 
 // cards
-function imprimirCards (arrayEvent){
+function imprimirCards(arrayEvent) {
   let template = "";
   for (let event of arrayEvent) {
     template += `<div class="d-flex flex-wrap p-5">
@@ -47,9 +47,9 @@ function imprimirCards (arrayEvent){
             </div>
           </div>
           </div>`;
- 
-        }
-        $cards.innerHTML = template;  
+
+  }
+  $cards.innerHTML = template;
 }
 
 // estructura checkbox
@@ -58,12 +58,12 @@ function estructuraCheckbox(categoria) {
   template += `<div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" id="checkboxcategorias" value="${categoria}">${categoria}
   <label class="form-check-label" for="inlineCheckbox"></label>
-</div>` 
-return template
+</div>`
+  return template
 }
 
- // impresion de checkbox
- function checksEnHtml(array, elemento) {
+// impresion de checkbox
+function checksEnHtml(array, elemento) {
   let contenedor = ""
   array.forEach(categoria => {
     contenedor += estructuraCheckbox(categoria)

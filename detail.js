@@ -7,7 +7,11 @@ console.log(locationSearch);
 const urlParam = new URLSearchParams(locationSearch);
 console.log(urlParam);
 
-const events = data.events;
+fetch('https://mindhub-xj03.onrender.com/api/amazing')
+.then ( response => response.json())
+.then( data => {
+  let events = data.events
+  console.log(events);
 const id = urlParam.get('id');
 
 const eventSelected = events.find(event => event._id == id)
@@ -25,3 +29,5 @@ $contenedordetails.innerHTML =  `
     </div>
   </div>
   </div>`;
+})
+.catch( error => { console.log(error)})
