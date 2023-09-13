@@ -156,7 +156,7 @@ function statsCapacidad(events) {
     }
   });
 
-  return `El mayor es ${contenedorAcumulador} con ${acumulador}% de asistencia`;
+  return `El mayor es ${contenedorAcumulador} con ${acumulador}% de capacidad`;
 }
 
 
